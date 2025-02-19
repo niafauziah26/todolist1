@@ -36,7 +36,7 @@
       <a href="index.html" class="mt-1">Lihat</a>
 
       <script type="module">
-        import { ambilCustomer, ubahCustomer } from './main.js';
+        import { ambiltodolist, ubahtodolist } from './main.js';
 
         let tombolubah = document.getElementById('tombol-ubah');
         let elemenNama = document.getElementById('input-nama');
@@ -47,7 +47,7 @@
         const queryString = window.location.search;
         const parameterURL = new URLSearchParams(queryString);
         const docId = parameterURL.get('docId');
-        const Customer = await ambilCustomer(docId);
+        const Customer = await ambiltodolist(docId);
 
         elemenNama.value = Customer.nama;
         elemenKg.value = Customer.prioritas;
@@ -56,7 +56,7 @@
 
         tombolubah.addEventListener('click', async function(el) {
           el.preventDefault();
-          await ubahCustomer(docId, elemenNama.value, elemenPrioritas.value, elemenStatus.value, elemenTanggal.value);
+          await ubahtodolist(docId, elemenNama.value, elemenPrioritas.value, elemenStatus.value, elemenTanggal.value);
           window.location.href = 'index.html';
         });
       </script>

@@ -37,7 +37,7 @@
  <a href="index.html">Lihat Data</a>
  
  <script type="module">
-  import { tambahCustomer } from './main.js';
+  import { tambahtodolist } from './main.js';
   
   let tombolTambah = document.getElementById('tombol-tambah');
   let elemenNama = document.getElementById('input-nama');
@@ -47,7 +47,7 @@
   
   tombolTambah.addEventListener('click', async function (e) {
     e.preventDefault();
-    await tambahCustomer(elemenNama.value, elemenPrioritas.value, elemenStatus.value, elemenTanggal.value);
+    await tambahtodolist(elemenNama.value, elemenPrioritas.value, elemenStatus.value, elemenTanggal.value);
     window.location.href = 'index.html';
   });
  </script>
