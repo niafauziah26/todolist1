@@ -11,21 +11,19 @@ import {
   orderBy,
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
 const firebaseConfig = {
-  apiKey: "AIzaSyAbLsq27KJU9tD9pHC8GrPUB7LgEPEQbPU",
-  authDomain: "insan-cemerlang-92ee0.firebaseapp.com",
-  projectId: "insan-cemerlang-92ee0",
-  storageBucket: "insan-cemerlang-92ee0.appspot.com",
-  messagingSenderId: "332441427242",
-  appId: "1:332441427242:web:73c31309147ef1dab15253",
-  measurementId: "G-JW04DZL85R"
+  apiKey: "AIzaSyD_N_5Tjv9zh_eJyfTXxUOICM2XX86--IM",
+  authDomain: "datasiswa-aebb3.firebaseapp.com",
+  projectId: "datasiswa-aebb3",
+  storageBucket: "datasiswa-aebb3.appspot.com",
+  messagingSenderId: "1049128187878",
+  appId: "1:1049128187878:web:e1879710f4b5252a68c827",
 };
 // Inisialisasi Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function ambildaftartodolist () {
+export async function ambildaftartodolist() {
   const refDokumen = collection(db, "todolist");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
@@ -44,19 +42,13 @@ export async function ambildaftartodolist () {
   return hasil;
 }
 
-export function formatAngka(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
-export async function tambahtodolist(nama, prioritas, status, tanggal) {
+export async function tambahtodolist(nama, prioritas, tanggal) {
   try {
     const dokRef = await addDoc(collection(db, 'todolist'), {
-
       nama: nama,
       prioritas: prioritas,
-      status: status,
-      tanggal: tanggal
-      
+      tanggal: tanggal,
+      status: 'Belum Dikerjakan'
     });
     console.log('Berhasil menambah todolist' + dokRef.id);
   } catch (e) {
@@ -64,21 +56,22 @@ export async function tambahtodolist(nama, prioritas, status, tanggal) {
   }
 }
 
-
 export async function hapustodolist(docid) {
   await deleteDoc(doc(db, "todolist", docid));
 }
-export async function ubahtodolist(docId, nama, alamat, nohp) {
-  await updateDoc(doc(db, "member", docId), {
+
+export async function ubahtodolist(docId, nama, prioritas, tanggal, status) {
+  await updateDoc(doc(db, "todolist", docId), {
     nama: nama,
-    alamat:alamat,
-    nohp: nohp,
+    prioritas: prioritas,
+    tanggal: tanggal,
+    status: status
   });
 }
 
 export async function ambiltodolist(docId) {
-  const docRef = await doc(db, "todolist", docId);
+  const docRef = doc(db, "todolist", docId);
   const docSnap = await getDoc(docRef);
 
-  return await docSnap.data();
+  return docSnap.data();
 }
