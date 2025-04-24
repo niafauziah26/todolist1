@@ -4,48 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ubah To-Do List</title>
+  <title>Ubah To-Do-List</title>
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
+    /* Styling untuk halaman */
     body {
       font-family: Arial, sans-serif;
-      background-color: darkblue;
-      color: #ffcc00;
+      background-color: blue; /* Warna latar belakang ungu */
+      color: #ffcc00; /* Warna teks kuning */
       text-align: center;
       padding: 20px;
     }
-    
+
     h1 {
-      color: #ffcc00;
+      color: #ffcc00; /* Warna teks judul */
     }
-    
+
     input,
     select {
       padding: 10px;
       margin: 5px;
       border: none;
       border-radius: 5px;
+      width: 100%;
     }
-    
+
     button {
       padding: 10px 15px;
-      background-color: : ;
+      background-color: #1976d2; /* Warna tombol biru */
+      color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
-    
+
     button:hover {
-      background-color: #ffd700;
+      background-color: #ffd700; /* Warna tombol saat hover */
     }
   </style>
 </head>
 
 <body class="m-4">
-  <h1>Ubah To-Do List</h1>
+  <h1>Ubah To-Do-List</h1>
 
+  <!-- Form untuk mengubah data -->
   <form class="mb-3">
     <div class="mb-3">
       <label class="form-label">Tugas</label>
@@ -77,11 +84,14 @@
   <script type="module">
     import { ambiltodolist, ubahtodolist } from './main.js';
 
+    // Ambil elemen form
     let tombolUbah = document.getElementById('tombol-ubah');
     let elemenTugas = document.getElementById('input-tugas');
     let elemenStatus = document.getElementById('input-status');
     let elemenPrioritas = document.getElementById('input-prioritas');
     let elemenTanggal = document.getElementById('input-tanggal');
+
+    // Ambil parameter dari URL
     const queryString = window.location.search;
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId');
@@ -90,12 +100,14 @@
     const tanggal = parameterURL.get('tanggal');
     const status = parameterURL.get('status');
 
+    // Isi form dengan data dari URL
     elemenTugas.value = nama;
     elemenStatus.value = status;
     elemenPrioritas.value = prioritas;
     elemenTanggal.value = tanggal;
 
-    tombolUbah.addEventListener('click', async function(e) {
+    // Event listener untuk tombol ubah
+    tombolUbah.addEventListener('click', async function (e) {
       e.preventDefault();
       await ubahtodolist(docId, elemenTugas.value, elemenPrioritas.value, elemenTanggal.value, elemenStatus.value);
       window.location.href = 'index.html';
