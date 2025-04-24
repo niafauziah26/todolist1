@@ -6,18 +6,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
+  <title>To-Do-List🕊️Niafzh</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: darkcyan;
-      color: white;
+      background-color: lightblue;
+      color: darkblue;
       text-align: center;
       padding: 20px;
     }
     
     h1 {
-      color: whitesmoke;
+      color: darkblue;
     }
     
     input,
@@ -30,7 +30,7 @@
     
     button {
       padding: 10px 15px;
-      background-color: lightblue;
+      background-color: cyan;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -79,6 +79,7 @@
   <table id="taskList" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
   <thead>
     <tr>
+      <th style="padding: 10px; border-bottom: 1px solid #fff;">No</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Tugas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Prioritas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Status</th>
@@ -88,6 +89,7 @@
   </thead>
   <tbody id="taskBody">
     <tr>
+      <td>Nomor</td>
       <td>Nama Tugas</td>
       <td>Prioritas</td>
       <td>
@@ -105,10 +107,11 @@
   </tbody>
 </table>
 
-<h2 style="color: papayawhip; margin-top: 40px;">Tugas Selesai</h2>
+<h2 style="color: darkblue; margin-top: 40px;">Tugas Selesai</h2>
 <table id="completedList" style="width: 100%; margin-top: 10px; border-collapse: collapse;">
   <thead>
     <tr>
+      <th style="padding: 10px; border-bottom: 1px solid #fff;">No</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Tugas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Prioritas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Status</th>
@@ -176,6 +179,7 @@
   const docId = row.data('id');
   const status = $(select).val() === 'Selesai';
   
+  const nomor = row.find('td:nth-child(1)').text();
   const nama = row.find('td:nth-child(1)').text();
   const prioritas = row.find('td:nth-child(2)').text();
   const tanggalText = row.find('td:nth-child(4)').text();
@@ -215,6 +219,7 @@ async function tampilkanTodolist() {
     const tr = $('<tr></tr>').css('background-color', '#003366').css('color', '#fff');
     tr.data('id', item.id);
     
+    const tdNomor = $('<td></td>').text(item.nomor).css('padding', '10px');
     const tdNama = $('<td></td>').text(item.nama).css('padding', '10px');
     const tdPrioritas = $('<td></td>').text(item.prioritas).css('padding', '10px');
     const tdStatus = $('<td></td>').css('padding', '10px');
