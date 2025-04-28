@@ -79,7 +79,6 @@
   <table id="taskList" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
   <thead>
     <tr>
-      <th style="padding: 10px; border-bottom: 1px solid #fff;">No</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Tugas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Prioritas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Status</th>
@@ -111,7 +110,6 @@
 <table id="completedList" style="width: 100%; margin-top: 10px; border-collapse: collapse;">
   <thead>
     <tr>
-      <th style="padding: 10px; border-bottom: 1px solid #fff;">No</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Tugas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Prioritas</th>
       <th style="padding: 10px; border-bottom: 1px solid #fff;">Status</th>
@@ -179,7 +177,6 @@
   const docId = row.data('id');
   const status = $(select).val() === 'Selesai';
   
-  const nomor = row.find('td:nth-child(1)').text();
   const nama = row.find('td:nth-child(1)').text();
   const prioritas = row.find('td:nth-child(2)').text();
   const tanggalText = row.find('td:nth-child(4)').text();
@@ -219,7 +216,6 @@ async function tampilkanTodolist() {
     const tr = $('<tr></tr>').css('background-color', '#003366').css('color', '#fff');
     tr.data('id', item.id);
     
-    const tdNomor = $('<td></td>').text(item.nomor).css('padding', '10px');
     const tdNama = $('<td></td>').text(item.nama).css('padding', '10px');
     const tdPrioritas = $('<td></td>').text(item.prioritas).css('padding', '10px');
     const tdStatus = $('<td></td>').css('padding', '10px');
